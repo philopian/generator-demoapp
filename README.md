@@ -7,13 +7,13 @@ The purpose of this generator is to get your demo app up and rolling without the
 
 ## Commands
 
-get up and running
+Get up and running
 
 ```bash
 $ gulp serve
 ```
 
-build a compressed version of your project (dist folder)
+Build a compressed version of your project (dist folder)
 ```bash
 $ gulp build
 ```
