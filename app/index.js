@@ -4,7 +4,7 @@ var path    = require('path');
 var yeoman  = require('yeoman-generator');
 var chalk   = require('chalk');
 
-// gobals
+// globals
 var dependsCompleted = {bower:false,npm:false};
 function checkDependCompletion(){
     if ((dependsCompleted.bower == true) && (dependsCompleted.npm == true) ) {
