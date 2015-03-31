@@ -4,6 +4,14 @@ var path    = require('path');
 var yeoman  = require('yeoman-generator');
 var chalk   = require('chalk');
 
+// gobals
+var dependsCompleted = {bower:false,npm:false};
+function checkDependCompletion(){
+    if ((dependsCompleted.bower == true) && (dependsCompleted.npm == true) ) {
+        console.log(chalk.green("\nYour app is all wired up, enjoy!\n"))
+    }
+}
+
 var MYGenerator = yeoman.generators.Base.extend({
 
     // prompt messages in terminal
@@ -54,6 +62,7 @@ var MYGenerator = yeoman.generators.Base.extend({
         //--copy files directory-----
         this.copy("_.bowerrc",".bowerrc");
         this.copy("_.gitignore",".gitignore");
+        this.copy("_bower.json","bower.json");
         this.copy("_gulpfile.js","gulpfile.js");
         this.copy("_package.json","package.json");
         this.copy("www/assets/images/_yeoman.png","www/assets/images/yeoman.png");
@@ -62,13 +71,24 @@ var MYGenerator = yeoman.generators.Base.extend({
 
         //--copy template files-----
         this.template("www/_index.html","www/index.html",placeholderValues);
+    },
 
+    installDepends: function(){
         // install bower components
         this.bowerInstall("", function(){
-            console.log("\nEverything Setup !!!\n");
+            dependsCompleted.bower = true;
+            checkDependCompletion();
         });
 
+        // install npm components
+        this.npmInstall("", function(){
+            dependsCompleted.npm = true;
+            checkDependCompletion();
+
+            installProjectServerDependencies();
+        });
     }
+
 
 });
 
