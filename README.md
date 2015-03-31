@@ -20,7 +20,7 @@ $ gulp build
 
 
 
-
+[Livereload Chrome Plugin](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei)
 
 
 
