@@ -1,62 +1,70 @@
 'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
+var util    = require('util');
+var path    = require('path');
+var yeoman  = require('yeoman-generator');
+var chalk   = require('chalk');
 
-module.exports = yeoman.generators.Base.extend({
-  initializing: function () {
-    this.pkg = require('../package.json');
-  },
+var MYGenerator = yeoman.generators.Base.extend({
 
-  prompting: function () {
-    var done = this.async();
+    // prompt messages in terminal
+    promptUser: function() {
+        var done = this.async();
 
-    // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the incredible ' + chalk.red('Demoapp') + ' generator!'
-    ));
+        // have Yeoman greet the user
+        console.log(this.yeoman);
 
-    var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
-    }];
+        var prompts = [
+            {
+                name: 'appName',
+                message: 'What is your app\'s name ?',
+                write: "your app name: " + this.appName
+            }
+        ];
 
-    this.prompt(prompts, function (props) {
-      this.someOption = props.someOption;
-
-      done();
-    }.bind(this));
-  },
-
-  writing: {
-    app: function () {
-      this.fs.copy(
-        this.templatePath('_package.json'),
-        this.destinationPath('package.json')
-      );
-      this.fs.copy(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
-      );
+        this.prompt(prompts, function (props) {
+            this.appName              = props.appName;
+            done();
+        }.bind(this));
     },
 
-    projectfiles: function () {
-      this.fs.copy(
-        this.templatePath('editorconfig'),
-        this.destinationPath('.editorconfig')
-      );
-      this.fs.copy(
-        this.templatePath('jshintrc'),
-        this.destinationPath('.jshintrc')
-      );
-    }
-  },
 
-  install: function () {
-    this.installDependencies({
-      skipInstall: this.options['skip-install']
-    });
-  }
+    // show the results that the user has chosen
+    showResults: function(){
+        var context = {
+            app_name: this.appName
+        };
+
+        console.log(JSON.stringify(context));
+    },// showResults
+
+
+    // create the folders for your app
+    scaffoldFolders: function(){
+        this.mkdir("www");
+        this.mkdir("assets/images");
+    },
+
+    // copy all the template files
+    copyMainFiles: function(){
+
+        var placeholderValues = {
+            YOUR_APP_NAME_HERE : this.appName
+        }
+
+        //--copy files directory-----
+        this.copy("_.bowerrc",".bowerrc");
+        this.copy("_.gitignore",".gitignore");
+        this.copy("_gulpfile.js","gulpfile.js");
+        this.copy("_package.json","package.json");
+        this.copy("www/assets/images/_yeoman.png","www/assets/images/yeoman.png");
+        this.copy("www/css/_styles.css","www/css/styles.css");
+        this.copy("www/js/_scripts.js","www/js/scripts.js");
+
+        //--copy template files-----
+        this.template("www/_index.html","www/index.html",placeholderValues);
+
+    }
+
 });
+
+module.exports = MYGenerator;
