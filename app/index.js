@@ -8,8 +8,8 @@ var chalk   = require('chalk');
 var dependsCompleted = {bower:false,npm:false};
 function checkDependCompletion(){
     if ((dependsCompleted.bower == true) && (dependsCompleted.npm == true) ) {
-        console.log(chalk.green("\nYour app is all wired up, enjoy!\n"))
-        console.log(chalk.blue("\nAvailable commands: $ gulp serve      $ gulp build"))
+        console.log(chalk.green("\nYour app is all wired up, enjoy!"))
+        console.log(chalk.blue("\nAvailable commands: $ gulp serve   $ gulp build \n\n"))
     }
 }
 
