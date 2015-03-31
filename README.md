@@ -19,7 +19,7 @@ $ gulp build
 ```
 
 
-
+Click the link below to install Livereload Chrome Plugin
 [Livereload Chrome Plugin](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei)
 
 
