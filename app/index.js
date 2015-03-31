@@ -9,6 +9,7 @@ var dependsCompleted = {bower:false,npm:false};
 function checkDependCompletion(){
     if ((dependsCompleted.bower == true) && (dependsCompleted.npm == true) ) {
         console.log(chalk.green("\nYour app is all wired up, enjoy!\n"))
+        console.log(chalk.blue("\nAvailable commands: $ gulp serve      $ gulp build"))
     }
 }
 
@@ -41,8 +42,6 @@ var MYGenerator = yeoman.generators.Base.extend({
         var context = {
             app_name: this.appName
         };
-
-        console.log(JSON.stringify(context));
     },// showResults
 
 
