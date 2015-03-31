@@ -63,6 +63,11 @@ var MYGenerator = yeoman.generators.Base.extend({
         //--copy template files-----
         this.template("www/_index.html","www/index.html",placeholderValues);
 
+        // install bower components
+        this.bowerInstall("", function(){
+            console.log("\nEverything Setup !!!\n");
+        });
+
     }
 
 });
