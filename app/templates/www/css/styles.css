@@ -1,0 +1,24 @@
+html,body{
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+h2{
+	padding-left: 20px;
+	
+}
+.jumbotron{
+	background-color: #BF8264;
+}
+	.jumbotron img{
+		height: 300px;
+	}
+	.jumbotron h3{
+		padding-left: 20px;		
+	}
+
+#overviewPanel{
+	margin: 20px;
+}
