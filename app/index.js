@@ -84,8 +84,6 @@ var MYGenerator = yeoman.generators.Base.extend({
         this.npmInstall("", function(){
             dependsCompleted.npm = true;
             checkDependCompletion();
-
-            installProjectServerDependencies();
         });
     }
 
